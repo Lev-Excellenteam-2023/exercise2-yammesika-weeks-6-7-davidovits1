@@ -4,10 +4,10 @@ def type_check(correct_type):
     :param correct_type: required type of variable
     :return: fun with var or a message if the variable is not of the appropriate type
     """
-    def decorator(fun):
+    def decorator(func):
         def inner(var):
             if correct_type == type(var):
-                return fun(var)
+                return func(var)
             return "No access to the function"
         return inner
     return decorator
@@ -19,13 +19,17 @@ def times2(num):
 
 
 @type_check(str)
-def times1(st):
-    return st * 2
+def times1(string):
+    return string * 2
 
 
-assert times2(2) == 4, "The result is not correct"
-assert times2('2') == "No access to the function", "The result is not correct"
-assert times1('2') == '22', "The result is not correct"
-assert times1(2) == "No access to the function", "The result is not correct"
+def main():
+    assert times2(2) == 4, "The result is not correct"
+    assert times2('2') == "No access to the function", "The result is not correct"
+    assert times1('2') == '22', "The result is not correct"
+    assert times1(2) == "No access to the function", "The result is not correct"
 
 
+if __name__ == "__main__":
+    # Call the main handler function
+    main()
